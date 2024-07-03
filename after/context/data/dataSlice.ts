@@ -10,17 +10,18 @@ const initialState: DataState = {
 };
 
 export const fetchData = createAsyncThunk("data/fetchData",() => {
-    return axios({
-      method: "get",
-      url: "https://private-anon-b26f96742a-pizzaapp.apiary-mock.com/restaurants/1/menu?category=Pizza&orderBy=rank",
+    // return axios({
+    //   method: "get",
+    //   url: "https://private-anon-b26f96742a-pizzaapp.apiary-mock.com/restaurants/1/menu?category=Pizza&orderBy=rank",
       
-    }).then(res=>res.data)
-    .then(data=>data.map((d:CartItem)=>{
-      return{
-        ...d,
-        quantity:0
-      }
-    }));
+    // }).then(res=>res.data)
+    // .then(data=>data.map((d:CartItem)=>{
+    //   return{
+    //     ...d,
+    //     quantity:0
+    //   }
+    // }));
+    return fetch("https://free-food-menus-api-two.vercel.app/burgers").then(res=>res.json());
 });
 
 const dataSlice = createSlice({

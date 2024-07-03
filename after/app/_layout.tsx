@@ -16,6 +16,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SFPro:require('../assets/fonts/SF-Pro-Rounded-Regular.ttf')
   });
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={DefaultTheme}>
       <Provider store={store}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

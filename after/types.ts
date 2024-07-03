@@ -1,11 +1,11 @@
 export type CartItem = {
-  category:string,
-  id:number,
-  name:string,
-  price:number,
-  rank:number,
-  topping:string[]|null,
-  quantity:number
+    id: number,
+    img: string,
+    name: string,
+    dsc: string,
+    price: string,
+    rate: string,
+    country: string
 }
 
 export type CartState = {

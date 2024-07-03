@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
  text:{
     fontSize: 20,
-    color: '#FFFFFF',
     fontWeight: "bold",
     top: 40,
     alignSelf: "center",
@@ -47,6 +46,5 @@ const styles = StyleSheet.create({
  container:{
    top:100,
    gap: 20,
-   color: "#ffffff"
  }
 });
