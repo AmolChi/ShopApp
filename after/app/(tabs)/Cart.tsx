@@ -2,8 +2,7 @@ import CartCard from '@/components/CartCard';
 import { addToCart, removeAllFromCart, removeOneFromCart } from '@/context/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { CartItem } from '@/types';
-import { useEffect } from 'react';
-import { Button, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function TabTwoScreen() {
   const cart = useAppSelector((state) => state.cart);
@@ -40,7 +39,7 @@ export default function TabTwoScreen() {
         </View>
       ) : (
         <View>
-          <View style={{height:'10%',flexDirection:'row',top:40,margin:'auto'}}>
+          <View style={{height:'10%',flexDirection:'row',top:50,margin:'auto'}}>
             <Image source={require('@/assets/images/swipe.png')} style={{height:20,width:20}}/>
             <Text>
               Swipe on an item to delete it entirely
@@ -57,9 +56,9 @@ export default function TabTwoScreen() {
               contentContainerStyle={{gap:10,alignItems:'center'}}
             />
           </View>
-            <Pressable style={styles.button}>
+            <TouchableOpacity style={styles.button}>
               <Text style={{ margin: 'auto', fontSize: 17, color: '#FFFFFF', fontWeight: 'bold' }}>Pay {numberFormat(cart.totalCost)}</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
       )}
     </View>

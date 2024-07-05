@@ -17,10 +17,10 @@ const cartSlice = createSlice({
       )
       if(index!=-1){
         state.cart[index].quantity+=1;
-        state.totalCost+=state.cart[index].price;
+        state.totalCost+= Number(state.cart[index].price);
       }else{
         state.cart.push({...action.payload,quantity:1});
-        state.totalCost += action.payload.price;
+        state.totalCost += Number(action.payload.price);
       }
       state.size++;
     },
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       if (index !== -1) {
-        state.totalCost -= state.cart[index].price
+        state.totalCost -= Number(state.cart[index].price)
         if (state.cart[index].quantity === 1) {
           state.cart.splice(index, 1);
         } else {
@@ -43,7 +43,7 @@ const cartSlice = createSlice({
         (item)=>item.id === action.payload.id
       );
       if(index!==-1){
-        state.totalCost -= state.cart[index].price * state.cart[index].quantity
+        state.totalCost -= Number(state.cart[index].price) * Number(state.cart[index].quantity)
         state.cart.splice(index,1);
       }
     }
