@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { Provider } from 'react-redux';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import store from '@/context/store';
@@ -30,6 +31,8 @@ export default function RootLayout() {
   }
 
   return (
+    <GestureHandlerRootView>
+
     <ThemeProvider value={DefaultTheme}>
       <Provider store={store}>
         <Stack>
@@ -38,5 +41,6 @@ export default function RootLayout() {
         </Stack>
       </Provider>
     </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

@@ -1,17 +1,24 @@
-import { View, Text, Button, StyleSheet, Pressable, Image } from 'react-native'
+import { View, Text, Button, StyleSheet, Pressable, Image, TouchableOpacity  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'expo-router'
 import { TabBarIcon } from './navigation/TabBarIcon'
 import { useAppDispatch } from '@/hooks/reduxHooks'
-import { addToCart } from '@/context/cart/cartSlice'
+import { addToCart, removeOneFromCart } from '@/context/cart/cartSlice'
 import { Colors } from '@/constants/Colors'
+import {} from 'react-native-gesture-handler'
+import { CartItem } from '@/types'
 
 
-const PizzaCard = ({ pizza }: any) => {
+const ItemCard = ({ pizza }: CartItem|any) => {
     const dispatch = useAppDispatch();
     const handleAddButton = () => {
         dispatch(addToCart(pizza));
     }
+
+    const handleRemoveButton = ()=>{
+        dispatch(removeOneFromCart(pizza));
+    }
+
 
     const [error,setError] = useState(false);
 
@@ -20,13 +27,17 @@ const PizzaCard = ({ pizza }: any) => {
     }
 
     return (
-        <Link href={`/${pizza.id}`} asChild>
+        <Link href={{
+            pathname:'/ProductDetails',
+            params:{...pizza,
+            }
+        }} asChild>
             <Pressable style={styles.card} key={pizza.id}>
                 <Image source={error?require('../assets/images/noImage.jpg'):{uri:pizza.img}} style={styles.image} onError={handleError} />
                 <Text style={{ fontSize: 20 }}>{pizza.name}</Text>
-                <Pressable onPress={handleAddButton}>
+                <TouchableOpacity onPress={handleAddButton}>
                     <TabBarIcon name='add-circle' color={Colors.light.tabIconDefault} />
-                </Pressable>
+                </TouchableOpacity>
             </Pressable>
         </Link>
     )
@@ -59,4 +70,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PizzaCard
+export default ItemCard

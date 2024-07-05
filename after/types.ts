@@ -3,14 +3,16 @@ export type CartItem = {
     img: string,
     name: string,
     dsc: string,
-    price: string,
+    price: number,
     rate: string,
     country: string
+    quantity:number
 }
 
 export type CartState = {
   cart: CartItem[];
   size: number;
+  totalCost: number
 }
 
 export type DataState = {

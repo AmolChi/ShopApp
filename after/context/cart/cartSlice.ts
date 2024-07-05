@@ -3,7 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState:CartState = {
     cart: [],
-    size: 0
+    size: 0,
+    totalCost: 0
 }
 
 const cartSlice = createSlice({
@@ -16,16 +17,19 @@ const cartSlice = createSlice({
       )
       if(index!=-1){
         state.cart[index].quantity+=1;
+        state.totalCost+=state.cart[index].price;
       }else{
         state.cart.push({...action.payload,quantity:1});
+        state.totalCost += action.payload.price;
       }
       state.size++;
     },
-    removeFromCart: (state, action: PayloadAction<CartItem>) => {
+    removeOneFromCart: (state, action: PayloadAction<CartItem>) => {
       const index = state.cart.findIndex(
         (item) => item.id === action.payload.id
       );
       if (index !== -1) {
+        state.totalCost -= state.cart[index].price
         if (state.cart[index].quantity === 1) {
           state.cart.splice(index, 1);
         } else {
@@ -34,8 +38,17 @@ const cartSlice = createSlice({
         state.size -= 1;
       }
     },
+    removeAllFromCart: (state,  action: PayloadAction<CartItem>)=>{
+      const index = state.cart.findIndex(
+        (item)=>item.id === action.payload.id
+      );
+      if(index!==-1){
+        state.totalCost -= state.cart[index].price * state.cart[index].quantity
+        state.cart.splice(index,1);
+      }
+    }
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const { addToCart, removeOneFromCart,removeAllFromCart } = cartSlice.actions
 export default cartSlice.reducer
