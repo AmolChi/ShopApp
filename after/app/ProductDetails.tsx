@@ -22,7 +22,6 @@ const ProductDetails = () => {
             setContains(true);
             setCartItem(cart[index]);
         }
-        console.log(item)
 
     },[cart])
 

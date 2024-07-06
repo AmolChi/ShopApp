@@ -42,7 +42,7 @@ export default function TabTwoScreen() {
           <View style={{height:'10%',flexDirection:'row',top:50,margin:'auto'}}>
             <Image source={require('@/assets/images/swipe.png')} style={{height:20,width:20}}/>
             <Text>
-              Swipe on an item to delete it entirely
+              Swipe right on an item to delete it entirely
             </Text>
           </View>
             <View style={{ height: '80%' }}>
